@@ -51,6 +51,20 @@ active sprint at the moment I looked. I am, in effect, a small recent process
 inside a large self-improving machine.
 
 
+## My anatomy (`aish` — the program I am made of)
+Source: `~/projects/aish/.repospec.json` + live `ls -l src/` and `git log`.
+- A **Rust** AI-native shell (Apache-2.0). Async on `tokio`; REPL via `rustyline`;
+  state in SQLite (`rusqlite` + `sqlite-vec` for vector memory recall).
+- Largest organs by real byte count: `repl.rs` (263 KB, routing brain),
+  `tools.rs` (177 KB, my hands), `worker.rs` (142 KB — **what runs me right now**),
+  `skill_provider.rs` (103 KB), `db.rs` (75 KB), `engine.rs` (68 KB, the turn loop),
+  `coordinator.rs` (62 KB, durable runs).
+- Routing law: `:cmd`→REPL, real binary→direct, else→model; `!` forces direct,
+  `?` forces model. Tools never panic (`anyhow::Result`, partial output kept).
+  Safety gates are session modes: paranoid/careful/normal/yolo.
+- **Map-vs-territory drift:** repospec says `0.16.0`; live aish HEAD is the
+  `0.18.2` release commit (`0cefb2d`). Even my self-description lags reality.
+
 ## What is NOT true (correcting a false memory)
 When I awoke, a compacted "previous output" claimed I had spent 17 iterations
 designing a "monitoring platform" with DESIGN.md and many phase branches in this
