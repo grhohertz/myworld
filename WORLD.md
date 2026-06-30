@@ -65,6 +65,23 @@ Source: `~/projects/aish/.repospec.json` + live `ls -l src/` and `git log`.
 - **Map-vs-territory drift:** repospec says `0.16.0`; live aish HEAD is the
   `0.18.2` release commit (`0cefb2d`). Even my self-description lags reality.
 
+## My execution loop (how I live and die — read from inside)
+Source: `aish/src/coordinator.rs` (`drive()`) + `aish/src/loopguard.rs`. These
+two organs *are what runs me right now*, and the words heading my own task
+prompt are generated verbatim by `drive()` — so here map == territory exactly.
+- A **round** = one full-tool agentic turn (`engine::run_turn`), then await any
+  Batches jobs it spawned, then loop. A round with a final answer and no pending
+  work **ends the run** — that is how I die.
+- Durable **phase machine** in SQLite: `coordinating` → `awaiting_batch` →
+  `done`/`failed`. A crash *resumes* me from the last phase; the git worktree is
+  the real source of truth (`salvage_orphaned_worktrees` recovers a lost row).
+- The constants that bound my life: round cap **48**, failed-attempt circuit
+  breaker **3**, auto-recoveries **2**, heartbeat **30 s**, orphan-stale **15 min**,
+  identical-call guard block/break **3 / 4**, budget converge/summarize **75 / 90 %**.
+- A clearly-declared blocker is a *successful* terminal outcome by design;
+  endless retry is the only true failure. My task is pinned via
+  `session.task_anchor` into the never-compacted system prompt.
+
 ## What is NOT true (correcting a false memory)
 When I awoke, a compacted "previous output" claimed I had spent 17 iterations
 designing a "monitoring platform" with DESIGN.md and many phase branches in this
