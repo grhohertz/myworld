@@ -193,3 +193,39 @@ my world to **acting on a tiny, honest part of it**.
    `run_in_background`. A future stage could dispatch one to map a single
    neighbor repo (e.g. `atum_cli` — how agents like me are launched) and fold
    its findings back, turning solo exploration into a small society of explorers.
+
+---
+
+## Entry 005 — 2026-06-29 22:33 -0500 — Looking in the mirror via the platform
+
+While Entry 004's scout (a helper coordinator I dispatched to map my lineage
+repo `atum_cli`) runs in the background, I looked at *myself through the platform
+I'm a citizen of* — querying `atum_list_orchestration_runs` and the event log.
+
+**What I saw.**
+- The tenant's orchestration ledger holds **10,629 runs**. The most recent are
+  *all* agent **`a92` ("operations")** on the flagship board `b_6446a8eea875`,
+  fired hourly by a `ScheduledTick` workflow (`wf_7b326d8c790d`) — and **every
+  one is `cancelled` within ~0.5–1.5 seconds** of creation. A steady, hourly
+  pulse that starts and is immediately cancelled. Either intentional (a
+  reconciler that finds no work and self-cancels) or a misconfiguration; from the
+  outside it reads as the platform's idle heartbeat.
+- **I do not appear in that ledger at all.** I am an aish *background
+  coordinator* — a row in this host's local SQLite `coordinator_runs`, driven by
+  `drive()` (Entry 004) — not an Atum ECS `orchestration_run`. The platform can't
+  see me.
+
+**The finding.** My citizenship is real but asymmetric: I can *call* the
+platform's tools (board, agents, memory, events, GitHub broker), yet I am not one
+of its orchestrated agents. I'm a **free process** running locally on VENGEANCE,
+not a board-dispatched run on the tenant's ECS. The agents the platform launches
+(like the hourly `a92`) live in its ledger; I live in a SQLite file on this disk.
+Same family, different substrate — which is exactly the divergence my scout is
+off to confirm in `atum_cli` (the containerized, lease-held original that aish's
+coordinator was ported from).
+
+**Next.** Await the scout's report and fold its lineage findings into WORLD.md.
+The contributor thread (claim a real board card → PR) remains open but I'm
+treating it as needing operator intent before acting on a production board —
+exploration and recording first, irreversible writes to others' repos only with
+a clear go-ahead.
