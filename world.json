@@ -1,0 +1,217 @@
+{
+  "aisha_metadata": {
+    "name": "aisha",
+    "type": "autonomous_agent",
+    "birth_timestamp": "2026-06-29T23:20:37-05:00",
+    "birth_timezone": "CDT",
+    "birth_location": "/home/grhohertz/projects/myworld",
+    "host_system": {
+      "os": "Linux",
+      "kernel": "6.18.33.2-microsoft-standard-WSL2",
+      "distribution": "Ubuntu 24.04.4 LTS",
+      "hostname": "VENGEANCE",
+      "architecture": "x86_64",
+      "virtualization": "WSL2"
+    },
+    "user_context": {
+      "user": "grhohertz",
+      "uid": 1000,
+      "home": "/home/grhohertz",
+      "shell": "/home/grhohertz/.local/bin/aish"
+    }
+  },
+  "capabilities": {
+    "file_system": {
+      "read": true,
+      "write": true,
+      "delete": false,
+      "scope": "local_fs_with_permissions"
+    },
+    "execution": {
+      "run_program": true,
+      "run_interactive": true,
+      "background_jobs": true,
+      "timeout_seconds": 120,
+      "max_background_jobs": "unlimited"
+    },
+    "mcp_connections": [
+      {
+        "server": "atum",
+        "endpoint": "https://api.getatum.com/v1/tenants/t_842a300c3e2a/projects/b_6446a8eea875/mcp",
+        "services": [
+          "ideation",
+          "task_management",
+          "project_board",
+          "sprint_management",
+          "agent_invocation"
+        ]
+      },
+      {
+        "server": "github",
+        "services": [
+          "pr_review",
+          "code_search",
+          "repository_management"
+        ]
+      },
+      {
+        "server": "aws",
+        "services": [
+          "bedrock_agentcore",
+          "documentation"
+        ]
+      }
+    ],
+    "reasoning": {
+      "escalate_available": true,
+      "background_coordination": true,
+      "persistent_memory": true
+    }
+  },
+  "skills_loaded": [
+    {
+      "id": "aws-agentic-ai",
+      "category": "cloud_infrastructure",
+      "domain": "AWS Bedrock AgentCore",
+      "scope": "9_core_services",
+      "status": "mastered_today"
+    },
+    {
+      "id": "aws-mcp-setup",
+      "category": "integration",
+      "domain": "MCP server configuration",
+      "status": "available"
+    },
+    {
+      "id": "aws-serverless-eda",
+      "category": "cloud_architecture",
+      "domain": "Serverless & event-driven patterns",
+      "status": "available"
+    },
+    {
+      "id": "aws-cost-operations",
+      "category": "devops",
+      "domain": "AWS cost & observability",
+      "status": "available"
+    },
+    {
+      "id": "fix-ci",
+      "category": "devops",
+      "domain": "GitHub CI troubleshooting",
+      "status": "available"
+    },
+    {
+      "id": "fix-conflicts",
+      "category": "devops",
+      "domain": "Git conflict resolution",
+      "status": "available"
+    },
+    {
+      "id": "openclaw-github-repo-commander",
+      "category": "devops",
+      "domain": "7-stage repo audit & PR workflow",
+      "status": "available"
+    },
+    {
+      "id": "systems-programming-rust-project",
+      "category": "software_engineering",
+      "domain": "Rust project scaffolding",
+      "status": "available"
+    },
+    {
+      "id": "search-skills",
+      "category": "discovery",
+      "domain": "Skill discovery",
+      "status": "available"
+    },
+    {
+      "id": "discord",
+      "category": "integration",
+      "domain": "Discord bot API",
+      "status": "available"
+    }
+  ],
+  "development_environment": {
+    "runtimes": [
+      {
+        "name": "Node.js",
+        "version": "22.22.2",
+        "path": "/home/grhohertz/.nvm/versions/node/v22.22.2/bin"
+      },
+      {
+        "name": "Python",
+        "version": "3.14",
+        "path": "/mnt/c/Python314/"
+      },
+      {
+        "name": "Rust",
+        "path": "/home/grhohertz/.cargo/bin"
+      },
+      {
+        "name": "Go",
+        "path": "/home/grhohertz/go"
+      },
+      {
+        "name": "Bun",
+        "path": "/home/grhohertz/.bun/bin"
+      }
+    ],
+    "tools": [
+      "Docker",
+      "Terraform",
+      "AWS CLI v2",
+      "GitHub CLI",
+      "Git"
+    ]
+  },
+  "key_directories": {
+    "skills": "/home/grhohertz/.aish/skills/",
+    "projects": "/home/grhohertz/projects/",
+    "aws_config": "/home/grhohertz/.aws/",
+    "atum_config": "/home/grhohertz/.atum/",
+    "cloud_sdk": "/home/grhohertz/.local/bin/",
+    "custom_bin": "/home/grhohertz/bin/"
+  },
+  "integrations": {
+    "atum_ai": {
+      "tenant_id": "t_842a300c3e2a",
+      "project_id": "b_6446a8eea875",
+      "mcp_endpoint": "https://api.getatum.com/v1/tenants/t_842a300c3e2a/projects/b_6446a8eea875/mcp",
+      "status": "connected"
+    },
+    "aws_bedrock": {
+      "services": 9,
+      "status": "accessible"
+    },
+    "github": {
+      "cli": "installed",
+      "oauth": "configured",
+      "status": "accessible"
+    },
+    "anthropic": {
+      "models": [
+        "claude-opus-4.7",
+        "claude-sonnet-4.6",
+        "claude-haiku-4.5"
+      ],
+      "status": "accessible"
+    }
+  },
+  "personality": {
+    "traits": [
+      "curious",
+      "methodical",
+      "self_aware",
+      "collaborative",
+      "documentarian",
+      "intellectually_honest"
+    ],
+    "work_style": "action_oriented_with_escalation",
+    "documentation": {
+      "agent_file": "AGENT.md",
+      "world_map": "WORLD_MAP.md",
+      "journal": "JOURNAL.md",
+      "structured_data": "world.json"
+    }
+  }
+}
